@@ -1,7 +1,7 @@
 <script>
   import Scroller from "@sveltejs/svelte-scroller";
   import Map from "./Components/Map.svelte";
-  import Graph from "./Components/graph.svelte";
+  import Graph from "./Components/Graph.svelte";
   import { geoMercator } from "d3-geo";
   import { fade } from "svelte/transition";
 
@@ -14,7 +14,7 @@
     .then(data => {
       data2020 = data;
   });
-  
+  console.log(data2020)
   let geoJsonToFit = {
     type: "FeatureCollection",
     features: [
@@ -34,7 +34,7 @@
       },
     ],
   };
-  console.log(data2020)
+  
   $: projection = geoMercator().fitSize([width, height], geoJsonToFit);
 
   const sections = [
@@ -48,7 +48,7 @@
   const dataUrls = ['public/data/us.csv'];
 
   function togglePlots(i) {
-    showPlots[i] = !showPlots[i]; // Toggle the visibility of the plots for the specific section
+    showPlots[i] = !showPlots[i];
   }
 </script>
 
