@@ -1,14 +1,20 @@
 <script>
   import Scroller from "@sveltejs/svelte-scroller";
   import Map from "./components/Map.svelte";
-  import Graph from "./components/Graph.svelte";
+  import Graph from "./components/graph.svelte";
   import { geoMercator } from "d3-geo";
   import { fade } from "svelte/transition";
 
   let count, index, offset, progress;
   let width, height;
-  let showPlots = [false, false, false, false, false]; // Separate state for each section
-
+  let showPlots = [false, false, false, false, false]; 
+  let data2020 = [];
+  fetch('public/data/average_cases_per_day_2020.json')
+    .then(response => response.json())
+    .then(data => {
+      data2020 = data;
+  });
+  
   let geoJsonToFit = {
     type: "FeatureCollection",
     features: [
@@ -28,7 +34,7 @@
       },
     ],
   };
-
+  console.log(data2020)
   $: projection = geoMercator().fitSize([width, height], geoJsonToFit);
 
   const sections = [
@@ -45,6 +51,8 @@
     showPlots[i] = !showPlots[i]; // Toggle the visibility of the plots for the specific section
   }
 </script>
+
+
 
 <style>
   html, body {
@@ -135,19 +143,19 @@
   }
 
   .hawaii-title {
-    bottom: 10px;
-    left: 195px;
+    bottom: 160px;
+    left: 180px;
   }
 
   .alaska-title {
-    bottom: 10px;
-    left: 35px;
+    bottom: 160px;
+    left: 20px;
   }
 </style>
 
 <div class="container">
   <div class="map-container" bind:clientWidth={width} bind:clientHeight={height}>
-    <Map bind:geoJsonToFit {index} />
+    <Map bind:geoJsonToFit {index} {data2020}/>
     <div class="title mainland-title">US Mainland</div>
     <div class="title hawaii-title">Hawaii</div>
     <div class="title alaska-title">Alaska</div>

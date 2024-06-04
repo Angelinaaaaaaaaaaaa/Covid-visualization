@@ -1,6 +1,7 @@
 <script>
   import mapboxgl from "mapbox-gl";
   import { onMount } from "svelte";
+  export let data2020;
   export let index;
   export let geoJsonToFit;
 
@@ -87,7 +88,6 @@
     map.on("load", () => {
       hideLabelLayers(map);
 
-      // Add state and county boundaries
       map.addSource('state-boundaries', {
         type: 'geojson',
         data: 'https://docs.mapbox.com/mapbox-gl-js/assets/us_states.geojson' 
@@ -137,11 +137,6 @@
 
   let isVisible = true;
 
-  // $: if (index >= 2) {
-  //   isVisible = true;
-  // } else {
-  //   isVisible = false;
-  // }
 </script>
 
 <svelte:head>
