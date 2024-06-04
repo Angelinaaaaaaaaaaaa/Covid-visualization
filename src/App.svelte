@@ -1,7 +1,7 @@
 <script>
   import Scroller from "@sveltejs/svelte-scroller";
-  import Map from "./components/Map.svelte";
-  import Graph from "./components/graph.svelte";
+  import Map from "./Components/Map.svelte";
+  import Graph from "./Components/graph.svelte";
   import { geoMercator } from "d3-geo";
   import { fade } from "svelte/transition";
 
