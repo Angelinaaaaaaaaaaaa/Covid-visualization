@@ -11,6 +11,7 @@
   export let endDate;
   export let graphLabel;
 
+
   let canvas;
   let chart;
   const parseDate = timeParse("%Y-%m-%d");
@@ -65,11 +66,11 @@
           plugins: {
             legend: {
               labels: {
-                boxHeight: 8, // Adjust the height of the legend box
+                boxHeight: 8,
                 font: {
-                  size: 10 // Adjust the font size of the legend text
+                  size: 10
                 },
-                padding: 8 // Adjust the padding around the legend items
+                padding: 8
               }
             }
           }
